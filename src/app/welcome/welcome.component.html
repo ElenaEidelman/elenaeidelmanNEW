@@ -1,0 +1,18 @@
+		<!--welcome-hero start -->
+		<section id="welcome-hero" class="welcome-hero">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="header-text">
+							<h2 [class.animated]="true" [class.fadeInUp]="true">
+								hi <span>,
+								</span> i am <br> {{welcomeData.titleName}} <br> {{welcomeData.titleLastName}} <span>.</span>   
+							</h2>
+							<p>{{welcomeData.profActivity}}</p>
+							<a [class.animated]="true" [class.fadeInDown]="true" href="{{welcomeData.resume}}" download>download resume</a>
+						</div><!--/.header-text-->
+					</div><!--/.col-->
+				</div><!-- /.row-->
+			</div><!-- /.container-->
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->

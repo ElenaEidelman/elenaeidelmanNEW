@@ -1,0 +1,108 @@
+		<!--contact start -->
+		<section id="contact" class="contact">
+			<div class="section-heading text-center">
+				<h2>
+					<i class="material-icons">
+						<a routerLink="/portfolio">arrow_back_ios</a>
+					</i>
+						contact me
+					<i class="material-icons">
+						<a routerLink="/welcome">arrow_forward_ios</a>
+					</i>
+				</h2>
+			</div>
+			<div class="container">
+				<div class="contact-content">
+					<div class="row">
+						<div class="col-md-offset-1 col-md-5 col-sm-6">
+							<div class="single-contact-box">
+								<div class="contact-form">
+									<form (ngSubmit)="onSubmit()" [formGroup] = "contactForm" >
+										<div class="row">
+											<div class="col-sm-6 col-xs-12">
+												<mat-form-field>
+													<input type="text" matInput placeholder="Name" formControlName="name" name="name">
+													<mat-hint><!--Please enter here your full name--></mat-hint>
+													<mat-icon matSuffix [class.error]="contactForm.get('name').touched && !contactForm.get('name').valid">person</mat-icon>
+													<mat-error>
+													  Name is <strong>required</strong>
+													</mat-error>
+												</mat-form-field>
+											</div>
+											<div class="col-sm-6 col-xs-12">
+												<mat-form-field>
+													<input matInput placeholder="Email" formControlName="email">
+													<mat-hint><!--Errors appear instantly!--></mat-hint>
+													<mat-icon matSuffix [class.error]="contactForm.get('email').touched && !contactForm.get('email').valid">email</mat-icon>
+													<mat-error *ngIf="contactForm.get('email').hasError('email')">
+													  Please enter a valid email address
+													</mat-error>
+													<mat-error *ngIf="contactForm.get('email').hasError('required')">
+													  Email is <strong>required</strong>
+													</mat-error>
+												</mat-form-field>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<mat-form-field class="example-full-width">
+													<input matInput placeholder="Subject" formControlName="subject"
+														   								[errorStateMatcher]="matcher">
+													<mat-hint><!--Please enter here your subject--></mat-hint>
+													<mat-icon  matSuffix [class.error]="contactForm.get('subject').touched && !contactForm.get('subject').valid">short_text</mat-icon>
+													<mat-error>
+													  Subject is <strong>required</strong>
+													</mat-error>
+												</mat-form-field>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<mat-form-field appearance="outline">
+													<mat-label>Message</mat-label>
+													<textarea matInput placeholder="Message" formControlName="text"></textarea>
+													<mat-error>
+															Subject is <strong>required</strong>
+													</mat-error>
+												</mat-form-field>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="single-contact-btn">
+													<button type="submit" mat-button class="contact-btn" >submit</button>
+												</div><!--/.single-single-contact-btn-->
+											</div><!--/.col-->
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-offset-1 col-md-5 col-sm-6">
+							<div class="single-contact-box">
+								<div class="contact-adress">
+									<div class="contact-add-head">
+										<h3>{{whoAmi.titleName}} {{whoAmi.titleLastName}}</h3>
+										<p>{{whoAmi.profActivity}}</p>
+									</div>
+									<div class="contact-add-info">
+										<div class="single-contact-add-info" *ngFor="let contact of contacts">
+											<h3>{{contact.title}}: </h3>
+											<p><a href="{{contact.communication}}{{contact.link}}">{{contact.link}}</a></p>
+										</div>
+									</div>
+								</div><!--/.contact-adress-->
+							</div><!--/.single-contact-box-->
+						</div>
+						<div class="col-md-12 hm-foot-icon">
+							<ul>
+								<li *ngFor="let socIcon of socialContact"><a href="{{socIcon.link}}"><i class="fa fa-{{socIcon.icon}}"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+

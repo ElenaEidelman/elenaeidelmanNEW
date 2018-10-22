@@ -1,0 +1,53 @@
+		<!--about start -->
+		<section id="about" class="about">
+			<div class="section-heading text-center">
+				<h2>
+					<i class="material-icons">
+						<a routerLink="/welcome">arrow_back_ios</a>
+					</i>
+						about me
+					<i class="material-icons">
+						<a routerLink="/education">arrow_forward_ios</a>
+					</i>
+				</h2>
+			</div>
+			<div class="container">
+				<div class="about-content">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="single-about-txt">
+								<h3>{{about.title}}</h3>
+								<p>{{about.description}}</p>
+								<div class="row">
+									<div class="col-sm-4" *ngFor="let cont of contact">
+										<div class="single-about-add-info">
+											<h3>{{cont.title}}</h3>
+											<p>
+												<a href="{{cont.communication}}{{cont.link}}" target="_blank">{{cont.link}}</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-offset-1 col-sm-5">
+							<div class="single-about-img">
+								<img src="assets/images/about/me.jpg" alt="profile_image">
+								<div class="about-list-icon">
+									<ul>
+										<li *ngFor="let cont of socialContact"matTooltipPosition="above" matTooltip="{{cont.icon}}">
+										
+											<a href="{{cont.link}}" target="_blank">
+												<i  class="fa fa-{{cont.icon}}" aria-hidden="true"></i>
+											</a>										
+									</ul><!-- / ul -->
+								</div><!-- /.about-list-icon -->
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!--/.about-->
+		<!--about end -->

@@ -1,0 +1,6 @@
+mat-icon:hover{
+    cursor: pointer;
+}
+.mat-dialog-actions{
+    justify-content: flex-end;
+}

@@ -1,0 +1,36 @@
+		<!--portfolio start -->
+		<section id="portfolio" class="portfolio">
+			<div class="portfolio-details">
+				<div class="section-heading text-center">
+					<h2>
+						<i class="material-icons">
+							<a routerLink="/experience">arrow_back_ios</a>
+						</i>
+							portfolio
+						<i class="material-icons">
+							<a routerLink="/contact">arrow_forward_ios</a>
+						</i>
+					</h2>
+				</div>
+				<div class="container">
+					<div class="portfolio-content">
+						<div class="isotope">
+							<div class="row">
+								<div class="col-sm-4" *ngFor="let items of portfolio">
+									<div class="item" *ngFor="let item of items">
+										<img src="{{item.imgLink}}" alt="portfolio image"/>
+										<a href="{{item.link}}" target="_blank">
+											<div class="isotope-overlay">
+												{{item.title}}
+											</div>
+										</a><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+								</div><!-- /.col -->
+							</div><!-- /.row -->
+						</div><!--/.isotope-->
+					</div><!--/.gallery-content-->
+				</div><!--/.container-->
+			</div><!--/.portfolio-details-->
+
+		</section><!--/.portfolio-->
+		<!--portfolio end -->

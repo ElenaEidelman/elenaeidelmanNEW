@@ -1,0 +1,41 @@
+		<!--skills start -->
+		<section id="skills" class="skills">
+      <div class="skill-content">
+        <div class="section-heading text-center">
+          <h2>
+            <i class="material-icons">
+              <a routerLink="/education">arrow_back_ios</a>
+            </i>
+              skills
+            <i class="material-icons">
+              <a routerLink="/experience">arrow_forward_ios</a>
+            </i>
+          </h2>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6" *ngFor="let skill of skills">
+              <div class="single-skill-content">
+                <div class="barWrapper" *ngFor="let name of skill"> 
+                  <span class="progressText">{{name.title}}</span>
+                  <div class="single-progress-txt">
+                    <div class="progress ">
+                        <mat-progress-bar
+                          [color]="color"
+                          [mode]="mode"
+                          [value]="value">
+                        </mat-progress-bar>
+                    </div>
+                    <h3><i class="{{name.icon}} fa-2x"></i> 
+                      <i class="flaticon-photoshop"></i>
+                    </h3>	
+                  </div>
+                </div><!-- /.barWrapper -->
+              </div>
+            </div>
+          </div><!-- /.row -->
+        </div>	<!-- /.container -->		
+      </div><!-- /.skill-content-->
+
+  </section><!--/.skills-->
+  <!--skills end -->
