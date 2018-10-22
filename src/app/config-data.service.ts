@@ -9,12 +9,18 @@ import { Education } from './classes/education';
 import { Experience } from './classes/experience';
 import { Portfolio } from './classes/portfolio';
 import { Skills } from './classes/skills';
+import { Message } from './classes/message';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigDataService {
   data = DataToConfig;
+  
   constructor(private http:HttpClient) { }
 
   getDataConfig(){
@@ -46,5 +52,13 @@ export class ConfigDataService {
   }
   getSkills():Observable<Skills[]>{
     return this.http.get<Skills[]>('api/skills');
+  }
+
+  addMessageFromContactForm(message: Message):Observable<Message>{
+    return this.http.post<Message>('api/messages',message,httpOptions);
+  }
+
+  getMessage():Observable<Message[]>{
+    return this.http.get<Message[]>('api/messages');
   }
 }

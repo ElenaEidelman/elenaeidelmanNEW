@@ -6,11 +6,12 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Contact } from '../classes/contacts';
 import { SocialContact } from '../classes/socialContact';
+import { Message } from '../classes/message';
 
-export interface DialogData {
+/*export interface DialogData {
   animal: string;
   name: string;
-}
+}*/
 
 /** Error when invalid control is dirty, touched, or submitted. */
 /*export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -31,6 +32,13 @@ export class ContactComponent implements OnInit {
   whoAmi = {};
   socialContact:SocialContact[];
   contactForm : FormGroup;
+  message:Message = {
+    name: '',
+    email:'',
+    subject: '',
+    text: ''
+  };
+  messages:Message[];
   constructor(private dataConfig:ConfigDataService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   openDialog(title,text): void {
@@ -68,6 +76,7 @@ export class ContactComponent implements OnInit {
         ]),
       });
       this.contactForm.valueChanges.subscribe(value => console.log(value));
+      this.dataConfig.getMessage().subscribe(message => this.messages = message);
     }
 
     getContacts():void{
@@ -77,13 +86,19 @@ export class ContactComponent implements OnInit {
     }
     onSubmit():void{
       if(this.contactForm.valid){
-        let nameContact = this.contactForm.controls['name'].value;
-        let emailContact = this.contactForm.controls['email'].value;
-        let subjectContact = this.contactForm.controls['subject'].value;
-        let textContact = this.contactForm.controls['text'].value;
-        console.log(this.contactForm.get('name'));
-        console.log(this.contactForm.get('name').value);
-        this.openDialog('Hello ' + this.contactForm.get('name').value,'Thank you for contacting me, i will reply as soon as possible!');
+        let keys = Object.keys(this.message);
+        for(let key of keys){
+          this.message[key] = this.contactForm.get(key).value;
+        }
+        try{
+          this.dataConfig.addMessageFromContactForm(this.message).subscribe(message => {this.messages.push(message)});
+          this.openDialog('Hello ' + this.contactForm.get('name').value,'Thank you for contacting me, i will reply as soon as possible!');
+        }
+        catch(Error){
+          console.log(Error.message);
+          this.openDialog('Hello ' + this.contactForm.get('name').value,'Something went wrong, please try again');
+
+        }
       }
     }
 

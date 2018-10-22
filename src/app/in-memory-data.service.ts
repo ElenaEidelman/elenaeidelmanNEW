@@ -66,6 +66,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {title:'Adobe Photoshop',icon:'fas fa-images'},
       {title:'Communication',icon:'far fa-smile-wink'},
   ];
-    return {users, header, welcome, about, contact, socialContact, education,experience, portfolio, skills};
+    const messages = [{name:'elena',email:'e@e',subject:'h',text:'h'}];
+    return {users, header, welcome, about, contact, socialContact, education,experience, portfolio, skills,messages};
   }
 }

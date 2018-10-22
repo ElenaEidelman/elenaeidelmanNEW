@@ -104,5 +104,14 @@
 			</div>
 
 		</section>
+		<div class="col-md-12">
+			<p *ngFor="let message of messages">
+				{{message.name}}<br/>
+				{{message.email}}<br/>
+				{{message.subject}}<br/>
+				{{message.text}}
+			</p>
+			
+		</div>
 
 
