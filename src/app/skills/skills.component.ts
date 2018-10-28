@@ -20,8 +20,8 @@ export class SkillsComponent implements OnInit {
   getSkills(){
     let dataSkills = [[],[]];
     let skillsArr ;//= this.dataConfig.getDataConfig().skills;
-    this.dataConfig.getSkills().subscribe(skill => {
-      skillsArr = skill;
+    this.dataConfig.getJsonData().subscribe(skill => {
+      skillsArr = skill["skills"];
       let lengthOfDataSkills = skillsArr.length;
       let halfOfLength = Math.floor(lengthOfDataSkills / 2);
       for(let item in skillsArr){

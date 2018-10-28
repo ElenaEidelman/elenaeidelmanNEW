@@ -22,8 +22,8 @@ export class PortfolioComponent implements OnInit {
   getPortfolio(){ 
     let portfolioARR = [];
     let portfolioFromData:Portfolio[];
-    this.dataConfig.getPortfolio().subscribe(portfolio => {
-      portfolioFromData = portfolio;
+    this.dataConfig.getJsonData().subscribe(portfolio => {
+      portfolioFromData = portfolio["portfolio"];
       let itemCount = 1;
       let count = 1;
   

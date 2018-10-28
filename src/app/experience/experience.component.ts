@@ -17,6 +17,6 @@ export class ExperienceComponent implements OnInit {
   }
 
   getExperience(){
-    this.configData.getExperience().subscribe(experience => this.experience = experience);
+    this.configData.getJsonData().subscribe(experience => this.experience = experience["experience"]);
   }
 }

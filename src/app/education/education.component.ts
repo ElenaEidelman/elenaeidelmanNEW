@@ -16,7 +16,7 @@ export class EducationComponent implements OnInit {
   }
 
   getEducationsList():void {
-    this.dataConfig.getEducation().subscribe(education => this.educations = education);
+    this.dataConfig.getJsonData().subscribe(education => this.educations = education["education"]);
   }
 
 }

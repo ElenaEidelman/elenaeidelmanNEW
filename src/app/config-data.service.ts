@@ -19,13 +19,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ConfigDataService {
-  data = DataToConfig;
+  //data = DataToConfig;
   
   constructor(private http:HttpClient) { }
-
+/*
   getDataConfig(){
     return this.data;
   }
+  
   getHeader():Observable<Header[]>{
     return this.http.get<Header[]>('api/header');
   }
@@ -60,5 +61,9 @@ export class ConfigDataService {
 
   getMessage():Observable<Message[]>{
     return this.http.get<Message[]>('api/messages');
+  }
+*/
+  getJsonData(){
+    return this.http.get("assets/dataJson.json");
   }
 }

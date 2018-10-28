@@ -26,7 +26,7 @@ export class MainNavComponent implements OnInit {
       this.getHeaderMenu();
     }
     getHeaderMenu(){
-      this.dataConfig.getHeader().subscribe(header => this.headerMenu = header);
+      this.dataConfig.getJsonData().subscribe(header => this.headerMenu = header["header"]);
     }
     clickedMenu(menu):void{
       this.selectedMenu = menu;

@@ -7,6 +7,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { Contact } from '../classes/contacts';
 import { SocialContact } from '../classes/socialContact';
 import { Message } from '../classes/message';
+import { HttpClient } from '@angular/common/http';
 
 /*export interface DialogData {
   animal: string;
@@ -39,7 +40,10 @@ export class ContactComponent implements OnInit {
     text: ''
   };
   messages:Message[];
-  constructor(private dataConfig:ConfigDataService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor(private dataConfig:ConfigDataService, 
+              private formBuilder: FormBuilder, 
+              public dialog: MatDialog,
+              private http: HttpClient) { }
 
   openDialog(title,text): void {
     const dialogRef = this.dialog.open(DialogComponent,{
@@ -59,6 +63,7 @@ export class ContactComponent implements OnInit {
   //matcher = new MyErrorStateMatcher();
 
     ngOnInit() {
+      console.log("inside contact component");
       this.getContacts();
       this.contactForm = this.formBuilder.group({
         email : new FormControl('', [
@@ -76,13 +81,15 @@ export class ContactComponent implements OnInit {
         ]),
       });
       this.contactForm.valueChanges.subscribe(value => console.log(value));
-      this.dataConfig.getMessage().subscribe(message => this.messages = message);
+      this.dataConfig.getJsonData().subscribe(message => this.messages = message["message"]);
     }
 
     getContacts():void{
-      this.dataConfig.getContact().subscribe(contact => this.contacts = contact);
-      this.dataConfig.getWelcome().subscribe(welcome => this.whoAmi = welcome);
-      this.dataConfig.getSocialContact().subscribe(socCont => this.socialContact = socCont);
+      this.dataConfig.getJsonData().subscribe(data => {
+        this.contacts = data["contact"];
+        this.whoAmi = data["welcome"];
+        this.socialContact = data["socialContact"]
+      });
     }
     onSubmit():void{
       if(this.contactForm.valid){
@@ -91,7 +98,7 @@ export class ContactComponent implements OnInit {
           this.message[key] = this.contactForm.get(key).value;
         }
         try{
-          this.dataConfig.addMessageFromContactForm(this.message).subscribe(message => {this.messages.push(message)});
+          //this.dataConfig.addMessageFromContactForm(this.message).subscribe(message => {this.messages.push(message)});
           this.openDialog('Hello ' + this.contactForm.get('name').value,'Thank you for contacting me, i will reply as soon as possible!');
         }
         catch(Error){

@@ -14,11 +14,12 @@ export class HeaderComponent implements OnInit {
   constructor(private dataConfig: ConfigDataService) { }
 
   ngOnInit() {
+    console.log("inside header component");
     this.getHeaderMenu();
   }
 
   getHeaderMenu(){
-    this.dataConfig.getHeader().subscribe(header => this.headerMenu = header);
+    this.dataConfig.getJsonData().subscribe(header => this.headerMenu = header["header"]);
   }
 
 }

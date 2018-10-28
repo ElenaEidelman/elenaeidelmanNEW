@@ -19,9 +19,11 @@ export class AboutComponent implements OnInit {
     this.getDataAbout();
   }
   getDataAbout(){
-    this.dataConfig.getAbout().subscribe(about => this.about = about);
-    this.dataConfig.getContact().subscribe(contact => this.contact = contact);
-    this.dataConfig.getSocialContact().subscribe(socCont => this.socialContact = socCont);
+    this.dataConfig.getJsonData().subscribe(data => {
+      this.about = data["about"];
+      this.contact = data["contact"];
+      this.socialContact = data["socialContact"];
+    });
   }
 
 }

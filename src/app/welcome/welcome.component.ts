@@ -16,6 +16,6 @@ export class WelcomeComponent implements OnInit {
   }
 
   getWelcomeData(){
-    this.dataConfig.getWelcome().subscribe(welcome => this.welcomeData = welcome);
+    this.dataConfig.getJsonData().subscribe(welcome => this.welcomeData = welcome["welcome"]);
   }
 }
