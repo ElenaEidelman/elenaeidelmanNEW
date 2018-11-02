@@ -39,6 +39,7 @@ export class ContactComponent implements OnInit {
     subject: '',
     text: ''
   };
+  error:Object;
   messages:Message[];
   constructor(private dataConfig:ConfigDataService, 
               private formBuilder: FormBuilder, 
@@ -89,6 +90,10 @@ export class ContactComponent implements OnInit {
         this.contacts = data["contact"];
         this.whoAmi = data["welcome"];
         this.socialContact = data["socialContact"]
+      },
+      error => {
+        this.error = error;
+        console.log(error.message);
       });
     }
     onSubmit():void{
@@ -97,15 +102,13 @@ export class ContactComponent implements OnInit {
         for(let key of keys){
           this.message[key] = this.contactForm.get(key).value;
         }
-        try{
-          //this.dataConfig.addMessageFromContactForm(this.message).subscribe(message => {this.messages.push(message)});
+          this.dataConfig.sendEmail(this.message).subscribe(response => {
+            console.log('Send mail success ',response);
+          },
+          error => {
+            console.log('Send mail error ',error);
+          });
           this.openDialog('Hello ' + this.contactForm.get('name').value,'Thank you for contacting me, i will reply as soon as possible!');
-        }
-        catch(Error){
-          console.log(Error.message);
-          this.openDialog('Hello ' + this.contactForm.get('name').value,'Something went wrong, please try again');
-
-        }
       }
     }
 

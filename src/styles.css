@@ -4943,3 +4943,5 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
 .rotateIcon{
   transform: rotate(-56deg);
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
